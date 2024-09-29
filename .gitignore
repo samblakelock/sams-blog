@@ -18,6 +18,10 @@
 
 # misc
 .DS_Store
+*.log
+*.lock
+*.pid
+*.gz
 *.pem
 
 # debug
@@ -27,6 +31,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.local
+.env.development.local
+.env.production.local
 
 # vercel
 .vercel
