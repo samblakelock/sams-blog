@@ -28,9 +28,3 @@ To get started with developing this project locally, follow these steps:
     ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## How to Use
-
-You can choose from one of the following two methods to use this repository:
-
-### One-Click Deploy
