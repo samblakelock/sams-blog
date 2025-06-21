@@ -1,4 +1,6 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 ::selection {
   background-color: #47a3f3;
@@ -36,7 +38,7 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all decoration-neutral-600 underline-offset-2 decoration-1;
 }
 
 .prose .anchor:after {
