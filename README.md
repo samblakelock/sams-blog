@@ -1,21 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Blog Starter
 
-## Getting Started
+This is a porfolio site template complete with a blog. Includes:
 
-First, run the development server:
+- MDX and Markdown support
+- Optimized for SEO (sitemap, robots, JSON-LD schema)
+- RSS Feed
+- Dynamic OG images
+- Syntax highlighting
+- Tailwind v4
+- Vercel Speed Insights / Web Analytics
+- Geist font
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://portfolio-blog-starter.vercel.app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to Use
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
