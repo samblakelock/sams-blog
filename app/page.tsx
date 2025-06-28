@@ -1,20 +1,17 @@
-import Image from 'next/image';
-import { CustomMDX } from 'app/components/mdx';
-import { promises as fs } from 'fs';
-import path from 'path';
+import Image from "next/image";
+import { CustomMDX } from "app/components/mdx";
+import { promises as fs } from "fs";
+import path from "path";
 
 export default async function Page() {
   const content = await fs.readFile(
-    path.join(process.cwd(), 'app/about/about.mdx'),
-    'utf8'
+    path.join(process.cwd(), "app/about/about.mdx"),
+    "utf8",
   );
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Sam Blakelock
-      </h1>
-      <div className='float-left mr-4 mb-2'>
+      <div className="float-left mr-4 mb-2">
         <Image
           className="rounded-full"
           src="/images/sam-blakelock-profile.jpg"
@@ -27,5 +24,5 @@ export default async function Page() {
         <CustomMDX source={content} />
       </article>
     </section>
-  )
+  );
 }

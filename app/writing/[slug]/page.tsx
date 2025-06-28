@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import { formatDate, getBlogPosts } from "app/writing/utils";
 import { baseUrl } from "app/sitemap";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -35,7 +36,7 @@ export function generateMetadata({ params }) {
       description,
       type: "article",
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/writing/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -74,7 +75,7 @@ export default function Blog({ params }) {
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
+            url: `${baseUrl}/writing/${post.slug}`,
             author: {
               "@type": "Person",
               name: "Writing",
@@ -82,6 +83,9 @@ export default function Blog({ params }) {
           }),
         }}
       />
+      <Link href="/writing" className="mb-4 block">
+        ←
+      </Link>
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
