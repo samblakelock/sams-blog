@@ -1,17 +1,28 @@
-import { BlogPosts } from 'app/components/posts'
+import Image from "next/image";
+import { CustomMDX } from "app/components/mdx";
+import { promises as fs } from "fs";
+import path from "path";
 
-export default function Page() {
+export default async function Page() {
+  const content = await fs.readFile(
+    path.join(process.cwd(), "app/about/about.mdx"),
+    "utf8",
+  );
+
   return (
     <section>
-      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
-        Sam Blakelock
-      </h1>
-      <p className="mb-10 text-1xl font-semibold">
-        {`Guitarist and co-founder of Pickup Music`}
-      </p>
-      <div className="my-8">
-        <BlogPosts />
+      <div className="float-left mr-4 mb-2">
+        <Image
+          className="rounded-full"
+          src="/images/sam-blakelock-profile.jpg"
+          alt="Sam Blakelock"
+          width={100}
+          height={100}
+        />
       </div>
+      <article className="prose prose-invert mb-10">
+        <CustomMDX source={content} />
+      </article>
     </section>
-  )
+  );
 }
