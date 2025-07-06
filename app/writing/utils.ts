@@ -42,11 +42,13 @@ function getMDXData(dir) {
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
+    const readTime = calculateReadTime(content);
 
     return {
       metadata,
       slug,
       content,
+      readTime,
     };
   });
 }
@@ -88,4 +90,11 @@ export function formatDate(date: string, includeRelative = false) {
   }
 
   return `${fullDate} (${formattedDate})`;
+}
+
+export function calculateReadTime(content: string) {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
 }
