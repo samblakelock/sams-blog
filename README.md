@@ -1,30 +1,9 @@
-# Sam's Blog
+# samblakelock.com
 
-This is a portfolio and blog powered by Next.js, based on the [Vercel Portfolio Starter Kit](https://vercel.com/templates/portfolio/portfolio-starter-kit).
+Personal website built with Next.js using this [blog template](https://vercel.com/templates/portfolio/nextjs-portfolio).
 
-## Features
+**Live site**: [samblakelock.com](https://samblakelock.com)
 
-- MDX and Markdown support
-- Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
-- Dynamic OG images
-- Syntax highlighting
-- Tailwind CSS
-- Vercel Speed Insights / Web Analytics
-- Geist font
+The source code is provided as-is for reference purposes.
 
-## Getting Started
-
-To get started with developing this project locally, follow these steps:
-
-1.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-2.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+© 2025 Sam Blakelock.
