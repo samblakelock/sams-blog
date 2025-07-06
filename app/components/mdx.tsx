@@ -1,30 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import Markdown from "markdown-to-jsx";
 import { highlight } from "sugar-high";
 import React from "react";
-
-function Table({ data }) {
-  const headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
-  return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
-  );
-}
 
 function CustomLink(props) {
   const href = props.href;
@@ -86,24 +64,46 @@ function createHeading(level) {
   return Heading;
 }
 
-const components = {
-  h1: createHeading(1),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
-  Image: RoundedImage,
-  a: CustomLink,
-  code: Code,
-  Table,
-};
-
-export function CustomMDX(props) {
+export function CustomMDX({ source }: { source: string }) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <Markdown
+      options={{
+        overrides: {
+          h1: createHeading(1),
+          h2: createHeading(2),
+          h3: createHeading(3),
+          h4: createHeading(4),
+          h5: createHeading(5),
+          h6: createHeading(6),
+          img: RoundedImage,
+          a: CustomLink,
+          code: Code,
+          table: ({ children }) => (
+            <table className="w-full border-collapse border-spacing-0 text-sm table-fixed">
+              {children}
+            </table>
+          ),
+          thead: ({ children }) => (
+            <thead className="border-b border-neutral-700">{children}</thead>
+          ),
+          tbody: ({ children }) => <tbody>{children}</tbody>,
+          tr: ({ children }) => (
+            <tr className="border-b border-neutral-800">{children}</tr>
+          ),
+          th: ({ children }) => (
+            <th className="text-left py-2 pr-4 font-medium text-neutral-200 break-words align-top">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="py-2 pr-4 text-neutral-300 break-words align-top">
+              {children}
+            </td>
+          ),
+        },
+      }}
+    >
+      {source}
+    </Markdown>
   );
 }
