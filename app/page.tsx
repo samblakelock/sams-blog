@@ -7,7 +7,7 @@ import path from "path";
 export default async function Page() {
   const content = await fs.readFile(
     path.join(process.cwd(), "app/about/about.mdx"),
-    "utf8",
+    "utf8"
   );
 
   return (

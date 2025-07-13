@@ -9,6 +9,8 @@
     "lint:security": "eslint . --ext .js,.jsx,.ts,.tsx --config .eslintrc.json",
     "type-check": "tsc --noEmit",
     "security-audit": "npm audit && npm run lint:security",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "prepare": "husky"
   },
   "dependencies": {
@@ -32,13 +34,14 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.3.4",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-anti-trojan-source": "^1.1.1",
     "eslint-plugin-no-secrets": "^2.2.1",
     "eslint-plugin-security": "^3.0.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "postcss": "^8.5.6",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "tailwindcss": "^3.4.17"
   },
   "lint-staged": {

@@ -8,6 +8,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -16,6 +21,9 @@ export const metadata: Metadata = {
   },
   description:
     "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.",
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
     title: "Sam Blakelock",
     description:
@@ -29,7 +37,7 @@ export const metadata: Metadata = {
         url: `${baseUrl}/images/sam-blakelock-1200-630.jpg`,
         width: 1200,
         height: 630,
-        alt: "Sam Blakelock",
+        alt: "Sam Blakelock - Co-Founder and CEO of Pickup Music",
       },
     ],
   },
@@ -92,6 +100,45 @@ export default function RootLayout({
       className={`text-white bg-black ${GeistSans.variable} ${GeistMono.variable}`}
     >
       <body className="antialiased flex flex-col min-h-screen items-center">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": `${baseUrl}/#website`,
+                  url: baseUrl,
+                  name: "Sam Blakelock",
+                  description: "Co-Founder and CEO of Pickup Music.",
+                  publisher: {
+                    "@id": `${baseUrl}/#person`,
+                  },
+                  inLanguage: "en-US",
+                },
+                {
+                  "@type": "Person",
+                  "@id": `${baseUrl}/#person`,
+                  name: "Sam Blakelock",
+                  url: baseUrl,
+                  description: "Co-Founder and CEO of Pickup Music.",
+                  jobTitle: "Co-Founder and CEO",
+                  worksFor: {
+                    "@type": "Organization",
+                    name: "Pickup Music",
+                    url: "https://pickupmusic.com",
+                  },
+                  mainEntityOfPage: {
+                    "@type": "WebPage",
+                    "@id": `${baseUrl}/#webpage`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
         <main className="flex-1 flex flex-col w-full max-w-xl px-4 mt-6">
           <Navbar />
           <div className="flex-1">{children}</div>
