@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/writing/utils";
 import { baseUrl } from "app/sitemap";
-import Link from "next/link";
+import { Breadcrumbs } from "app/components/breadcrumbs";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({ params }: { params: { slug: string } }) {
   const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     return;
@@ -31,6 +31,9 @@ export function generateMetadata({ params }) {
   return {
     title,
     description,
+    alternates: {
+      canonical: `${baseUrl}/writing/${post.slug}`,
+    },
     openGraph: {
       title,
       description,
@@ -40,6 +43,7 @@ export function generateMetadata({ params }) {
       images: [
         {
           url: ogImage,
+          alt: `${title} - Blog post by Sam Blakelock`,
         },
       ],
     },
@@ -52,7 +56,7 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function Blog({ params }) {
+export default function Blog({ params }: { params: { slug: string } }) {
   const post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -74,18 +78,22 @@ export default function Blog({ params }) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/writing/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "Writing",
+              name: "Sam Blakelock",
             },
           }),
         }}
       />
-      <Link href="/writing" className="mb-4 block">
-        ←
-      </Link>
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Writing", href: "/writing" },
+          { name: post.metadata.title, href: `/writing/${post.slug}` },
+        ]}
+      />
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
