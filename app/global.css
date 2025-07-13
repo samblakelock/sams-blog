@@ -69,13 +69,13 @@ html {
   .prose table {
     font-size: 0.875rem;
   }
-  
+
   .prose table th:first-child,
   .prose table td:first-child {
     max-width: 140px;
     min-width: 100px;
   }
-  
+
   .prose table th,
   .prose table td {
     padding: 0.75rem 0.5rem;
@@ -87,13 +87,13 @@ html {
   .prose table {
     font-size: 0.8rem;
   }
-  
+
   .prose table th:first-child,
   .prose table td:first-child {
     max-width: 100px;
     min-width: 80px;
   }
-  
+
   .prose table th,
   .prose table td {
     padding: 0.5rem 0.25rem;
@@ -103,7 +103,7 @@ html {
 
 .prose .anchor:after {
   @apply text-neutral-700;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -185,8 +185,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "plugins": ["security", "no-secrets", "anti-trojan-source"],
   "rules": {
     "security/detect-object-injection": "error",
