@@ -100,6 +100,11 @@ export function CustomMDX({ source }: { source: string }) {
               {children}
             </td>
           ),
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-neutral-700 pl-4 mb-4 text-neutral-400 italic">
+              {children}
+            </blockquote>
+          ),
         },
       }}
     >

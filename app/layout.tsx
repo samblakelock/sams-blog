@@ -97,7 +97,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`text-white bg-black ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`text-white ${GeistSans.variable} ${GeistMono.variable}`}
+      style={{ backgroundColor: "#09090B" }}
     >
       <body className="antialiased flex flex-col min-h-screen items-center">
         <script
