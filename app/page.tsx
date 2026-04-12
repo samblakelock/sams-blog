@@ -12,6 +12,7 @@ export default async function Page() {
 
   return (
     <section>
+      <h1 className="sr-only">Sam Blakelock</h1>
       <div className="float-left mr-4 mb-2">
         <Image
           className="rounded-2xl"
