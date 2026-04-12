@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Markdown from "markdown-to-jsx";
 import { highlight } from "sugar-high";
 import React from "react";
+import { YouTube } from "./youtube";
 
 function CustomLink(props) {
   const href = props.href;
@@ -78,6 +81,7 @@ export function CustomMDX({ source }: { source: string }) {
           img: RoundedImage,
           a: CustomLink,
           code: Code,
+          YouTube,
           table: ({ children }) => (
             <table className="w-full border-collapse border-spacing-0 text-sm table-fixed">
               {children}
