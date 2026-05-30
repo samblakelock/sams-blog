@@ -11,6 +11,7 @@ import { baseUrl } from "./sitemap";
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#09090B",
 };
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export const metadata: Metadata = {
     title: "Sam Blakelock",
     description:
       "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.",
+    site: "@samblakelock",
     creator: "@samblakelock",
     images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
   },
@@ -113,6 +115,7 @@ export default function RootLayout({
                   "@id": `${baseUrl}/#website`,
                   url: baseUrl,
                   name: "Sam Blakelock",
+                  alternateName: "samblakelock.com",
                   description: "Co-Founder and CEO of Pickup Music.",
                   publisher: {
                     "@id": `${baseUrl}/#person`,

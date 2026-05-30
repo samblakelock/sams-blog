@@ -20,6 +20,7 @@ export default async function Page() {
           alt="Sam Blakelock"
           width={100}
           height={100}
+          priority
         />
       </div>
       <article className="prose prose-invert mb-10">

@@ -1,5 +1,15 @@
+/* eslint-disable no-secrets/no-secrets */
 import { baseUrl } from "app/sitemap";
 import { getBlogPosts } from "app/writing/utils";
+
+function escapeXml(unsafe: string) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 export async function GET() {
   const allBlogs = getBlogPosts();
@@ -11,32 +21,33 @@ export async function GET() {
       }
       return 1;
     })
-    .map(
-      (post) =>
-        `<item>
-          <title>${post.metadata.title}</title>
-          <link>${baseUrl}/writing/${post.slug}</link>
-          <description>${post.metadata.summary || ""}</description>
-          <pubDate>${new Date(
-            post.metadata.publishedAt
-          ).toUTCString()}</pubDate>
-        </item>`
-    )
+    .map((post) => {
+      const link = `${baseUrl}/writing/${post.slug}`;
+      return `<item>
+          <title>${escapeXml(post.metadata.title)}</title>
+          <link>${link}</link>
+          <guid isPermaLink="true">${link}</guid>
+          <description>${escapeXml(post.metadata.summary || "")}</description>
+          <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
+        </item>`;
+    })
     .join("\n");
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
-  <rss version="2.0">
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>My Portfolio</title>
+        <title>Sam Blakelock</title>
         <link>${baseUrl}</link>
-        <description>This is my portfolio RSS feed</description>
+        <atom:link href="${baseUrl}/rss" rel="self" type="application/rss+xml" />
+        <description>Writing about music, technology, and building products.</description>
+        <language>en-us</language>
         ${itemsXml}
     </channel>
   </rss>`;
 
   return new Response(rssFeed, {
     headers: {
-      "Content-Type": "text/xml",
+      "Content-Type": "application/rss+xml; charset=utf-8",
     },
   });
 }

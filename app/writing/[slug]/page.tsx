@@ -39,10 +39,13 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       description,
       type: "article",
       publishedTime,
+      authors: [`${baseUrl}/about`],
       url: `${baseUrl}/writing/${post.slug}`,
       images: [
         {
           url: ogImage,
+          width: 1200,
+          height: 630,
           alt: `${title} - Blog post by Sam Blakelock`,
         },
       ],
@@ -51,6 +54,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       card: "summary_large_image",
       title,
       description,
+      creator: "@samblakelock",
       images: [ogImage],
     },
   };
@@ -80,9 +84,19 @@ export default function Blog({ params }: { params: { slug: string } }) {
               ? `${baseUrl}${post.metadata.image}`
               : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/writing/${post.slug}`,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `${baseUrl}/writing/${post.slug}`,
+            },
             author: {
               "@type": "Person",
               name: "Sam Blakelock",
+              url: `${baseUrl}/about`,
+            },
+            publisher: {
+              "@type": "Person",
+              name: "Sam Blakelock",
+              url: baseUrl,
             },
           }),
         }}
