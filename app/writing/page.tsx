@@ -14,11 +14,14 @@ export const metadata: Metadata = {
     description: "Thoughts on music, education and guitar.",
     url: `${baseUrl}/writing`,
     type: "website",
+    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
   },
   twitter: {
     card: "summary_large_image",
     title: "Writing | Sam Blakelock",
     description: "Thoughts on music, education and guitar.",
+    creator: "@samblakelock",
+    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
   },
 };
 

@@ -33,6 +33,8 @@ export function YouTube({ id, title = "YouTube video" }: YouTubeProps) {
             src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
             alt={title}
             loading="lazy"
+            width={1280}
+            height={720}
             className="absolute inset-0 h-full w-full object-cover"
           />
           <span className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">

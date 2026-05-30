@@ -16,11 +16,14 @@ export const metadata: Metadata = {
     description: "Co-Founder and CEO of Pickup Music.",
     url: `${baseUrl}/about`,
     type: "website",
+    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Sam Blakelock",
     description: "Co-Founder and CEO of Pickup Music.",
+    creator: "@samblakelock",
+    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
   },
 };
 
