@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { cache } from "react";
 
 type Metadata = {
   title: string;
@@ -11,33 +12,48 @@ type Metadata = {
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
-  const frontMatterBlock = match![1];
+  if (!match) {
+    throw new Error("Missing frontmatter block (expected '--- ... ---').");
+  }
+  const frontMatterBlock = match[1];
   const content = fileContent.replace(frontmatterRegex, "").trim();
   const frontMatterLines = frontMatterBlock.trim().split("\n");
   const metadata: Partial<Metadata> = {};
 
   frontMatterLines.forEach((line) => {
+    // Skip blank lines and any line without a "key: value" shape so we never
+    // create an empty-string key on the metadata object.
+    if (!line.includes(": ")) return;
     const [key, ...valueArr] = line.split(": ");
+    const trimmedKey = key.trim();
+    if (!trimmedKey) return;
     let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
+    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove surrounding quotes
+    metadata[trimmedKey as keyof Metadata] = value;
   });
 
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: string) {
   // eslint-disable-next-line security/detect-non-literal-fs-filename
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath) {
+function readMDXFile(filePath: string) {
   // eslint-disable-next-line security/detect-non-literal-fs-filename
   const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
+  try {
+    return parseFrontmatter(rawContent);
+  } catch (error) {
+    // Surface which file is malformed instead of a bare null-deref/parse error.
+    throw new Error(
+      `Failed to parse "${filePath}": ${(error as Error).message}`
+    );
+  }
 }
 
-function getMDXData(dir) {
+function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
@@ -53,9 +69,20 @@ function getMDXData(dir) {
   });
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "writing", "posts"));
-}
+// Memoized per request render: generateStaticParams, generateMetadata, and the
+// page component all call this, but the filesystem is read at most once.
+export const getBlogPosts = cache(() => {
+  const posts = getMDXData(path.join(process.cwd(), "app", "writing", "posts"));
+
+  // Newest first, with a stable slug tiebreak so posts sharing a publishedAt
+  // (e.g. two dated 2015-12-22) always render in a deterministic order.
+  return posts.sort((a, b) => {
+    const diff =
+      new Date(b.metadata.publishedAt).getTime() -
+      new Date(a.metadata.publishedAt).getTime();
+    return diff !== 0 ? diff : a.slug.localeCompare(b.slug);
+  });
+});
 
 export function formatDate(date: string, includeRelative = false) {
   const currentDate = new Date();
@@ -94,7 +121,8 @@ export function formatDate(date: string, includeRelative = false) {
 
 export function calculateReadTime(content: string) {
   const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
+  const trimmed = content.trim();
+  const words = trimmed ? trimmed.split(/\s+/).length : 0;
+  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
   return `${minutes} min read`;
 }

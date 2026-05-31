@@ -7,49 +7,46 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
+import {
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  TWITTER_HANDLE,
+  OG_IMAGE,
+  jsonLdScript,
+} from "./seo";
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#09090B",
+  themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Sam Blakelock",
-    template: "%s | Sam Blakelock",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.",
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: baseUrl,
   },
   openGraph: {
-    title: "Sam Blakelock",
-    description:
-      "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     url: baseUrl,
-    siteName: "Sam Blakelock",
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: `${baseUrl}/images/sam-blakelock-1200-630.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Sam Blakelock - Co-Founder and CEO of Pickup Music",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sam Blakelock",
-    description:
-      "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.",
-    site: "@samblakelock",
-    creator: "@samblakelock",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    site: TWITTER_HANDLE,
+    creator: TWITTER_HANDLE,
+    images: [OG_IMAGE.url],
   },
   icons: {
     icon: [
@@ -106,7 +103,7 @@ export default function RootLayout({
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: jsonLdScript({
               "@context": "https://schema.org",
               "@graph": [
                 {

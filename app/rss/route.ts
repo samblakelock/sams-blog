@@ -15,12 +15,6 @@ export async function GET() {
   const allBlogs = getBlogPosts();
 
   const itemsXml = allBlogs
-    .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-        return -1;
-      }
-      return 1;
-    })
     .map((post) => {
       const link = `${baseUrl}/writing/${post.slug}`;
       return `<item>

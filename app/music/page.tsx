@@ -1,30 +1,13 @@
 import { CustomMDX } from "app/components/mdx";
 import { promises as fs } from "fs";
 import path from "path";
-import { baseUrl } from "app/sitemap";
-import type { Metadata } from "next";
+import { pageMetadata } from "app/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Music",
   description: "Music and podcasts by Sam Blakelock.",
-  alternates: {
-    canonical: `${baseUrl}/music`,
-  },
-  openGraph: {
-    title: "Music | Sam Blakelock",
-    description: "Music and podcasts by Sam Blakelock.",
-    url: `${baseUrl}/music`,
-    type: "website",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Music | Sam Blakelock",
-    description: "Music and podcasts by Sam Blakelock.",
-    creator: "@samblakelock",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-};
+  path: "/music",
+});
 
 export default async function Page() {
   const content = await fs.readFile(
