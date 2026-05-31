@@ -88,24 +88,24 @@ export function CustomMDX({ source }: { source: string }) {
             </table>
           ),
           thead: ({ children }) => (
-            <thead className="border-b border-neutral-700">{children}</thead>
+            <thead className="border-b border-neutral-200">{children}</thead>
           ),
           tbody: ({ children }) => <tbody>{children}</tbody>,
           tr: ({ children }) => (
-            <tr className="border-b border-neutral-800">{children}</tr>
+            <tr className="border-b border-neutral-200">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="text-left py-2 pr-4 font-medium text-neutral-200 break-words align-top">
+            <th className="text-left py-2 pr-4 font-medium text-neutral-900 break-words align-top">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="py-2 pr-4 text-neutral-300 break-words align-top">
+            <td className="py-2 pr-4 text-neutral-700 break-words align-top">
               {children}
             </td>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-neutral-700 pl-4 mb-4 text-neutral-400 italic">
+            <blockquote className="border-l-4 border-neutral-300 pl-4 mb-4 text-neutral-600 italic">
               {children}
             </blockquote>
           ),

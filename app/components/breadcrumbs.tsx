@@ -39,11 +39,11 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
           <span key={item.href} className="flex items-center">
             {index > 0 && <span className="mx-2">→</span>}
             {index === items.length - 1 ? (
-              <span className="text-neutral-400">{item.name}</span>
+              <span className="text-neutral-600">{item.name}</span>
             ) : (
               <Link
                 href={item.href}
-                className="hover:text-neutral-300 transition-colors"
+                className="hover:text-neutral-700 transition-colors"
               >
                 {item.name}
               </Link>
