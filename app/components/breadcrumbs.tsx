@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { baseUrl } from "app/sitemap";
+import { jsonLdScript } from "app/seo";
 
 interface BreadcrumbItem {
   name: string;
@@ -28,7 +29,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
+          __html: jsonLdScript(breadcrumbStructuredData),
         }}
       />
       <nav

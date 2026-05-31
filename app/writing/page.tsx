@@ -1,29 +1,12 @@
 import { BlogPosts } from "app/components/posts";
 import { Breadcrumbs } from "app/components/breadcrumbs";
-import { baseUrl } from "app/sitemap";
-import type { Metadata } from "next";
+import { pageMetadata } from "app/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Writing",
   description: "Thoughts on music, education and guitar.",
-  alternates: {
-    canonical: `${baseUrl}/writing`,
-  },
-  openGraph: {
-    title: "Writing | Sam Blakelock",
-    description: "Thoughts on music, education and guitar.",
-    url: `${baseUrl}/writing`,
-    type: "website",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Writing | Sam Blakelock",
-    description: "Thoughts on music, education and guitar.",
-    creator: "@samblakelock",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-};
+  path: "/writing",
+});
 
 export default function Page() {
   return (

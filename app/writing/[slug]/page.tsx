@@ -3,6 +3,7 @@ import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/writing/utils";
 import { baseUrl } from "app/sitemap";
 import { Breadcrumbs } from "app/components/breadcrumbs";
+import { OG_IMAGE, TWITTER_HANDLE, jsonLdScript } from "app/seo";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -44,8 +45,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
           alt: `${title} - Blog post by Sam Blakelock`,
         },
       ],
@@ -54,7 +55,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       card: "summary_large_image",
       title,
       description,
-      creator: "@samblakelock",
+      creator: TWITTER_HANDLE,
       images: [ogImage],
     },
   };
@@ -73,7 +74,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLdScript({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: post.metadata.title,

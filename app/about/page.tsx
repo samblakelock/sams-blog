@@ -3,29 +3,13 @@ import { promises as fs } from "fs";
 import path from "path";
 import { baseUrl } from "app/sitemap";
 import { Breadcrumbs } from "app/components/breadcrumbs";
-import type { Metadata } from "next";
+import { pageMetadata, jsonLdScript } from "app/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description: "Co-Founder and CEO of Pickup Music.",
-  alternates: {
-    canonical: `${baseUrl}/about`,
-  },
-  openGraph: {
-    title: "About Sam Blakelock",
-    description: "Co-Founder and CEO of Pickup Music.",
-    url: `${baseUrl}/about`,
-    type: "website",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Sam Blakelock",
-    description: "Co-Founder and CEO of Pickup Music.",
-    creator: "@samblakelock",
-    images: [`${baseUrl}/images/sam-blakelock-1200-630.jpg`],
-  },
-};
+  path: "/about",
+});
 
 export default async function Page() {
   const content = await fs.readFile(
@@ -39,7 +23,7 @@ export default async function Page() {
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLdScript({
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Sam Blakelock",

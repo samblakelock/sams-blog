@@ -4,7 +4,12 @@ export const runtime = "edge";
 
 export function GET(request: Request) {
   const url = new URL(request.url);
-  const title = url.searchParams.get("title") || "Sam Blakelock";
+  // Clamp the reflected title so an oversized ?title= can't exhaust the
+  // edge renderer's CPU/memory; ~120 chars is well past any real headline.
+  const title = (url.searchParams.get("title") || "Sam Blakelock").slice(
+    0,
+    120
+  );
 
   return new ImageResponse(
     (

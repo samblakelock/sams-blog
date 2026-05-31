@@ -7,22 +7,38 @@ import { highlight } from "sugar-high";
 import React from "react";
 import { YouTube } from "./youtube";
 
-function CustomLink(props) {
-  const href = props.href;
-
+function CustomLink({ href = "", children, ...props }) {
+  // Internal route → client-side navigation.
   if (href.startsWith("/")) {
     return (
       <Link href={href} {...props}>
-        {props.children}
+        {children}
       </Link>
     );
   }
 
+  // Same-page anchor.
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  // External link: only allow safe protocols so a `javascript:`/`data:` href
+  // (e.g. from a future untrusted content source) can't execute on click.
+  const isSafe = /^(https?:|mailto:)/i.test(href);
+  return (
+    <a
+      href={isSafe ? href : "#"}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
+      {children}
+    </a>
+  );
 }
 
 function RoundedImage(props) {
