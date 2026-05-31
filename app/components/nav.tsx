@@ -36,15 +36,13 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className={`transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1 ${
-                    isActive
-                      ? "text-neutral-800 dark:text-neutral-200"
-                      : "text-neutral-600 dark:text-neutral-400"
+                  className={`transition-all hover:text-neutral-800 flex align-middle relative py-1 px-2 m-1 ${
+                    isActive ? "text-neutral-800" : "text-neutral-600"
                   }`}
                 >
                   {name}
                   {isActive && (
-                    <div className="absolute bottom-0 left-2 right-2 h-px bg-neutral-800 dark:bg-neutral-200 rounded-full" />
+                    <div className="absolute bottom-0 left-2 right-2 h-px bg-neutral-800 rounded-full" />
                   )}
                 </Link>
               );
@@ -56,7 +54,7 @@ export function Navbar() {
               href="https://www.linkedin.com/in/samblakelock/"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative p-1"
+              className="transition-all hover:text-neutral-800 flex align-middle relative p-1"
               aria-label="LinkedIn"
             >
               <LinkedInIcon />
@@ -65,7 +63,7 @@ export function Navbar() {
               href="https://www.instagram.com/samblakelock"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative p-1"
+              className="transition-all hover:text-neutral-800 flex align-middle relative p-1"
               aria-label="Instagram"
             >
               <InstagramIcon />
@@ -74,7 +72,7 @@ export function Navbar() {
               href="https://www.youtube.com/@samblakelockofficial"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative p-1"
+              className="transition-all hover:text-neutral-800 flex align-middle relative p-1"
               aria-label="YouTube"
             >
               <YouTubeIcon />

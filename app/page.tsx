@@ -23,7 +23,7 @@ export default async function Page() {
           priority
         />
       </div>
-      <article className="prose prose-invert mb-10">
+      <article className="prose mb-10">
         <CustomMDX source={content} />
       </article>
 

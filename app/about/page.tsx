@@ -60,7 +60,7 @@ export default async function Page() {
         ]}
       />
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">About</h1>
-      <article className="prose prose-invert">
+      <article className="prose">
         <CustomMDX source={content} />
       </article>
     </section>
