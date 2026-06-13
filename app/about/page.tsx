@@ -43,7 +43,7 @@ export default async function Page() {
           { name: "About", href: "/about" },
         ]}
       />
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">About</h1>
+      <h1 className="font-semibold text-2xl mb-8 tracking-tight">About</h1>
       <article className="prose">
         <CustomMDX source={content} />
       </article>
