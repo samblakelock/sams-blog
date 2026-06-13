@@ -99,7 +99,7 @@ export function CustomMDX({ source }: { source: string }) {
           code: Code,
           YouTube,
           table: ({ children }) => (
-            <table className="w-full border-collapse border-spacing-0 text-sm table-fixed">
+            <table className="w-full border-separate border-spacing-0 text-sm table-fixed">
               {children}
             </table>
           ),
@@ -111,12 +111,12 @@ export function CustomMDX({ source }: { source: string }) {
             <tr className="border-b border-neutral-200">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="text-left py-2 pr-4 font-medium text-neutral-900 break-words align-top">
+            <th className="text-left py-3 px-4 font-medium text-neutral-900 break-words align-top">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="py-2 pr-4 text-neutral-700 break-words align-top">
+            <td className="py-3 px-4 text-neutral-700 break-words align-top">
               {children}
             </td>
           ),

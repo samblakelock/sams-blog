@@ -48,6 +48,23 @@ html {
 .prose table {
   table-layout: auto;
   width: 100%;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.prose table th:not(:last-child),
+.prose table td:not(:last-child) {
+  border-right: 1px solid #d4d4d4;
+}
+
+.prose table th,
+.prose table td {
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.prose table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .prose table th:first-child,
@@ -154,7 +171,7 @@ html {
 }
 
 .prose strong {
-  @apply font-medium;
+  @apply font-semibold;
 }
 
 .prose ul {
