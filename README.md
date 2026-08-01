@@ -6,4 +6,4 @@ Personal website built with Next.js using this [blog template](https://vercel.co
 
 The source code is provided as-is for reference purposes.
 
-© 2025 Sam Blakelock.
+© Sam Blakelock.
