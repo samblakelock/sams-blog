@@ -1,0 +1,4 @@
+if grep -qiE 'co-authored-by:.*(claude|anthropic)|generated with.*claude' "$1"; then
+  echo "✖ Commit message contains Claude/AI attribution. Remove it (see CLAUDE.md)." >&2
+  exit 1
+fi
