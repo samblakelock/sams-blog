@@ -7,7 +7,7 @@ import { pageMetadata, jsonLdScript } from "app/seo";
 
 export const metadata = pageMetadata({
   title: "About",
-  description: "Co-Founder and CEO of Pickup Music.",
+  description: "Co-Founder and Co-CEO of Pickup Music.",
   path: "/about",
 });
 
@@ -27,7 +27,7 @@ export default async function Page() {
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Sam Blakelock",
-            jobTitle: "Co-Founder and CEO",
+            jobTitle: "Co-Founder and Co-CEO",
             worksFor: {
               "@type": "Organization",
               name: "Pickup Music",

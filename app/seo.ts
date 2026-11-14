@@ -4,13 +4,13 @@ import { baseUrl } from "./sitemap";
 export const SITE_NAME = "Sam Blakelock";
 export const TWITTER_HANDLE = "@samblakelock";
 export const SITE_DESCRIPTION =
-  "Co-Founder and CEO of Pickup Music. Writing about music, technology, and building products.";
+  "Co-Founder and Co-CEO of Pickup Music. Writing about music, technology, and building products.";
 
 export const OG_IMAGE = {
   url: `${baseUrl}/images/sam-blakelock-1200-630.jpg`,
   width: 1200,
   height: 630,
-  alt: "Sam Blakelock - Co-Founder and CEO of Pickup Music",
+  alt: "Sam Blakelock - Co-Founder and Co-CEO of Pickup Music",
 } as const;
 
 /**

@@ -112,7 +112,7 @@ export default function RootLayout({
                   url: baseUrl,
                   name: "Sam Blakelock",
                   alternateName: "samblakelock.com",
-                  description: "Co-Founder and CEO of Pickup Music.",
+                  description: "Co-Founder and Co-CEO of Pickup Music.",
                   publisher: {
                     "@id": `${baseUrl}/#person`,
                   },
@@ -123,8 +123,8 @@ export default function RootLayout({
                   "@id": `${baseUrl}/#person`,
                   name: "Sam Blakelock",
                   url: baseUrl,
-                  description: "Co-Founder and CEO of Pickup Music.",
-                  jobTitle: "Co-Founder and CEO",
+                  description: "Co-Founder and Co-CEO of Pickup Music.",
+                  jobTitle: "Co-Founder and Co-CEO",
                   worksFor: {
                     "@type": "Organization",
                     name: "Pickup Music",
